@@ -4,6 +4,7 @@
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and setti
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
+import math
 import cv2
 from cvzone.HandTrackingModule import HandDetector
 # opening the webcam
@@ -22,7 +23,14 @@ while True:
 
     if hands:
         lmList = hands[0]['lmList']
-        print(lmList)
+        x1, y1 = lmList[5]
+        x2, y2 = lmList[17]  # there is points numbers  here we use 5 and 17 go to the documentation for the details
+
+        distance= math.sqrt((y2-y1)**2 + (x2-x1)**2)
+
+        print(abs(x2-x1), distance) # this will solve the rotation problem
 
     cv2.imshow("Image", img)
     cv2.waitKey(1)
+
+#check commit
